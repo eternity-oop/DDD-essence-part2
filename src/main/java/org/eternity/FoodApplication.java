@@ -30,6 +30,12 @@ public class FoodApplication {
                                         CartService cartService,
                                         OrderService orderService) {
         return args -> {
+            menuService.changeOptionGroupName(new MenuId(1L), new OptionGroupId(1L), "반찬추가 선택");
+            menuService.changeOptionName(new MenuId(1L),
+                    new OptionGroupId(1L),
+                    new Option("소(250g)", Money.wons(12000L)),
+                    "소(300g)");
+
             CartLineItemRequest request = new CartLineItemRequest(
                     new ShopId(1L),
                     new CartId(1L),
@@ -38,13 +44,11 @@ public class FoodApplication {
                     new CartOptionGroupRequest(
                             new OptionGroupId(1L),
                             2,
-                            Arrays.asList()));
+                            Arrays.asList(
+                                    new CartLineItemRequest.CartOptionRequest("소(300g)", 12000L),
+                                    new CartLineItemRequest.CartOptionRequest("중(400g)", 16000L)
 
-            menuService.changeOptionGroupName(new MenuId(1L), new OptionGroupId(1L), "반찬추가 선택");
-            menuService.changeOptionName(new MenuId(1L),
-                    new OptionGroupId(1L),
-                    new Option("소(250g)", Money.wons(12000L)),
-                    "소(300g)");
+                            )));
 
             cartService.addCartLineItem(new UserId(1L), request);
             orderService.place(new UserId(1L));

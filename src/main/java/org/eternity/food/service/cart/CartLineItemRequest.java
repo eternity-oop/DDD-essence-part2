@@ -33,15 +33,29 @@ public class CartLineItemRequest {
     public static class CartOptionGroupRequest {
         private OptionGroupId optionGroupId;
         private Integer count;
-        private List<String> optionNames = new ArrayList<>();
+        private List<CartOptionRequest> options = new ArrayList<>();
 
         public CartOptionGroupRequest() {
         }
 
-        public CartOptionGroupRequest(OptionGroupId optionGroupId, Integer count, List<String> optionNames) {
+        public CartOptionGroupRequest(OptionGroupId optionGroupId, Integer count, List<CartOptionRequest> options) {
             this.optionGroupId = optionGroupId;
             this.count = count;
-            this.optionNames = optionNames;
+            this.options = options;
+        }
+    }
+
+    @Data
+    public static class CartOptionRequest {
+        private String name;
+        private Long price;
+
+        public CartOptionRequest() {
+        }
+
+        public CartOptionRequest(String name, Long price) {
+            this.name = name;
+            this.price = price;
         }
     }
 }

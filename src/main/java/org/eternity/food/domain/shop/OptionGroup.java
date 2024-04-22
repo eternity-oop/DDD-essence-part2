@@ -63,8 +63,8 @@ public class OptionGroup extends DomainEntity<OptionGroup, OptionGroupId> {
         this.options = options;
     }
 
-    public Optional<Option> getOption(String name) {
-        return options.stream().filter(option -> option.getName().equals(name)).findFirst();
+    public Optional<Option> findOption(Option target) {
+        return options.stream().filter(option -> option.equals(target)).findFirst();
     }
 
     public boolean isFree() {

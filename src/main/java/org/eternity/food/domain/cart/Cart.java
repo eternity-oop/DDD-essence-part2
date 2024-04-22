@@ -81,7 +81,7 @@ public class Cart extends AggregateRoot<Cart, CartId> {
             this.shopId = shop.getId();
         }
 
-        if (!isContains(this.shopId)) {
+        if (!isContains(shop.getId())) {
             start(shop);
         }
 
