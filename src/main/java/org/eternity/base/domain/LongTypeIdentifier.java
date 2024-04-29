@@ -20,4 +20,9 @@ public abstract class LongTypeIdentifier extends ValueObject<LongTypeIdentifier>
     protected Object[] getEqualityFields() {
         return new Object[] { id };
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + " : " + longValue();
+    }
 }
